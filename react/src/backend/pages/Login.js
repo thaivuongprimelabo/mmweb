@@ -38,7 +38,11 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        var { auth } = nextProps;
+        var key = Object.keys(auth);
+        if(key.length) {
+            this.props.history.push(AdminRoutes.ROUTE_DASHBOARD);
+        }
     } 
 
     componentDidMount() {
@@ -96,7 +100,6 @@ class Login extends Component {
 
     _doSignin = () => {
         if($('#frmForm').valid()) {
-            //this.props.history.push(AdminRoutes.ROUTE_DASHBOARD);
             this.props.doLogin(this.state);
         }
         
