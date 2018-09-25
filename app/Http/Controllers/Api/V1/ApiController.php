@@ -36,7 +36,8 @@ class ApiController extends Controller
     public function authentication(Request $request) {
         $output = [
             'code' => 404,
-            'message' => 'Tài khoản hoặc mật khẩu không chính xác'
+            'message' => 'MSG_INVALID_USER',
+            'data' => []
         ];
         $email = $request->email;
         $password = $request->password;
@@ -47,6 +48,7 @@ class ApiController extends Controller
         if (Auth::attempt($userdata)) {
             $request->clear = true;
             $output['code'] = Constants::SUCCESS;
+            $output['message'] = 'MSG_LOGIN_SUCCESS';
             $output['data'] = Auth::user();
         }
         

@@ -6,8 +6,6 @@ return [
         'LOCATION_LIST' => 'Danh mục địa điểm',
         'ACTION_LIST' => 'Danh mục hoạt động',
         'ACCOUNT_LIST' => 'Danh mục tài khoản',
-        'ONLINE' => 'Trực tuyến',
-        'OFFLINE' => 'Ẩn'
     ],
     'BUTTON' => [
         'REGISTER' => 'Đăng ký',
@@ -33,7 +31,9 @@ return [
         'IS_SYNC' => 'Đồng bộ',
         'NOT_SYNC' => 'Chưa đồng bộ',
         'REMEMBER_ME' => 'Duy trì đăng nhập',
-        'LOADING' => 'Đang tải dữ liệu'
+        'LOADING' => 'Đang tải dữ liệu',
+        'ONLINE' => 'Trực tuyến',
+        'OFFLINE' => 'Ẩn'
     ],
     'PAGINATION' => [
         'FROM_TO' => '{0} dòng～{1} dòng',

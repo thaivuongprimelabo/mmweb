@@ -5,17 +5,19 @@ const webpack = require('webpack');
 module.exports = {
     // entry: ['babel-polyfill', './src/index.js'],
     entry: {
-        types: './src/types/index.js',
+        backend: './src/backend/index.js',
+        frontend : './src/frontend/index.js'
+    },
+    output : {
+        path : path.join(__dirname, '../public/dist'),
+        filename : '[name].js',
+        publicPath : '/dist/'
     },
     // output : {
-    //     path : path.join(__dirname, '../public/dist'),
-    //     filename : '[name].js',
-    //     publicPath : '/dist/'
+    //     path : path.join(__dirname, 'dist'),
+    //     filename : 'bundle.js',
+    //     publicPath : '/'
     // },
-    output : {
-        path : path.join(__dirname, 'dist'),
-        filename : '[name].js'
-    },
     module : {
         rules : [
             {
@@ -33,9 +35,19 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     plugins : [
         new HtmlWebpackPlugin({
-            template : './src/index.html'
+            filename : 'backend.html',
+            template : './src/backend/index.html',
+            chunks: ['backend']
+        }),
+        new HtmlWebpackPlugin({
+            filename : 'frontend.html',
+            template : './src/frontend/index.html',
+            chunks: ['frontend']
         }),
         new webpack.ProvidePlugin({
             '$' : 'jquery',

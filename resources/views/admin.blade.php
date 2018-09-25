@@ -8,6 +8,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <script src="{{ URL::to('dist/frontend.js') }}"></script>
+    <script src="{{ URL::to('dist/backend.js') }}"></script>
 </body>
 </html>

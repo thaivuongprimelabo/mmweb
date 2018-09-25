@@ -15,6 +15,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/{a}', function ($a) {
+    if($a != 'admin') {
+        return view('welcome');
+    } else {
+        return view('admin');
+    }
+    
+});
+
+Route::get('/{a}/{b}', function ($a, $b) {
+    if($a != 'admin') {
+        return view('welcome');
+    } else {
+        return view('admin');
+    }
+});
+
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+Route::get('/admin/{name}', function($name) {
+    return view('admin');
+});
+
 //Auth::routes();
 
 Route::group(['prefix' => 'auth'], function () {
