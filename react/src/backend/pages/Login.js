@@ -10,6 +10,9 @@ import messages from '../constants/messages';
 import utils from '../helpers/utils';
 import { login } from '../redux/actions/index';
 
+/** History */
+import history from '../../History';
+
 /** Assets */
 import '../assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css';
 import '../assets/admin/bower_components/font-awesome/css/font-awesome.min.css';
@@ -39,10 +42,13 @@ class Login extends Component {
 
     componentWillReceiveProps(nextProps) {
         var { auth } = nextProps;
-        var key = Object.keys(auth);
-        if(key.length) {
-            this.props.history.push(AdminRoutes.ROUTE_DASHBOARD);
+        if(this.props.auth !== auth) {
+            var key = Object.keys(auth);
+            if(key.length) {
+                this.props.history.push(AdminRoutes.ROUTE_DASHBOARD);
+            }
         }
+        
     } 
 
     componentDidMount() {

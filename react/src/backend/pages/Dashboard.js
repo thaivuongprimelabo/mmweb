@@ -19,21 +19,25 @@ class Dashboard extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        var { auth } = nextProps;
+        if(this.props.auth !== auth) {
+            var keys = Object.keys(auth.userInfo);
+            /** Log out */
+            if(!keys.length) {
+                this.props.history.goBack();
+            }
+        }
     } 
 
     componentDidMount() {
-        // actions.test()
     }
 
     render() {
-        console.log(history.location);
         return (
             <Main>
                 <div className="box">
                     <div className="box-header with-border">
                     <h3 className="box-title">Title</h3>
-
                     <div className="box-tools pull-right">
                         <button type="button" className="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -56,6 +60,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        auth : state.auth
     };
 }
 

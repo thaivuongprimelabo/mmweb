@@ -23,7 +23,7 @@ export const login = (form) => {
 		.then(res => {
 			var responseJson = res.data;
 			if(responseJson.code === 200) {
-				dispatch(saveUserInfo(responseJson.data));
+				dispatch(loginSucceed(responseJson.data));
 			}
 		})
 		.catch((error) =>{
@@ -90,9 +90,15 @@ export const saveCurrentPage = (data) => {
 	}
 }
 
-export const saveUserInfo = (data) => {
+export const loginSucceed = (data) => {
 	return {
-		type : Types.SAVE_USER_INFO,
+		type : Types.LOGIN_SUCCEED,
 		userInfo : data
+	}
+}
+
+export const signout = () => {
+	return {
+		type : Types.SIGN_OUT
 	}
 }

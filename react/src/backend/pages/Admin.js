@@ -4,6 +4,7 @@ import * as AdminRoutes from '../constants/routes';
 import Login from './Login';
 import Register from './Register';
 import Dashboard from './Dashboard';
+import Main from '../layouts/Main';
 
 export default class Admin extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class Admin extends Component {
           <Route path={ AdminRoutes.ROUTE_LOGIN } component={Login} />
           <Route path={ AdminRoutes.ROUTE_REGISTER } component={Register} />
           <Route path={ AdminRoutes.ROUTE_DASHBOARD } component={Dashboard} />
+          <Route path={ AdminRoutes.ROUTE_MAIN} component={Main} />
         </Switch>
       </div>
     )

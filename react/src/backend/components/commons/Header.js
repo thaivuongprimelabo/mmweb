@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
+import * as AdminRoutes from '../../constants/routes';
+
 /** Image */
 import UserIcon from '../../assets/admin/dist/img/user2-160x160.jpg';
+
+/** Action */
+import { signout } from '../../redux/actions/index';
 
 class Header extends Component {
 
@@ -14,13 +19,21 @@ class Header extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        var { auth } = nextProps;
     } 
 
     componentDidMount() {
     }
 
+    _signout = () => {
+        this.props.signout();
+    }
+
     render() {
+        var { auth } = this.props;
+
+        var username = auth.userInfo.name;
+
         return (
             <header className="main-header">
 
@@ -113,14 +126,14 @@ class Header extends Component {
                         <li className="dropdown user user-menu">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                                 <img src={ UserIcon } className="user-image" alt="User Image" />
-                                <span className="hidden-xs">Alexander Pierce</span>
+                                <span className="hidden-xs">{ username }</span>
                             </a>
                             <ul className="dropdown-menu">
                             <li className="user-header">
                                 <img src={ UserIcon } className="img-circle" alt="User Image" />
 
                                 <p>
-                                Alexander Pierce - Web Developer
+                                { username }
                                 <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -142,7 +155,7 @@ class Header extends Component {
                                 <a href="#" className="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div className="pull-right">
-                                <a href="#" className="btn btn-default btn-flat">Sign out</a>
+                                    <a href="javascript:void(0)" className="btn btn-default btn-flat" onClick={ this._signout }>Sign out</a>
                                 </div>
                             </li>
                             </ul>
@@ -160,11 +173,15 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        auth : state.auth
     };
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
+        signout : () => {
+            dispatch(signout());
+        }
     }
 };
 
