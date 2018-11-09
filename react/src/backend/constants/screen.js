@@ -1,6 +1,6 @@
 const screen = {
     'CMS_NAME' : 'MM',
-    'CMS_NAME2' : 'CMS',
+    'CMS_NAME2' : 'ONLINE',
     'VN' : {
         'SIDEBAR' : {
             'TOP' : 'Trang chủ',
@@ -13,7 +13,10 @@ const screen = {
             'REGISTER' : 'Đăng ký',
             'UPDATE' : 'Cập nhật',
             'LOGIN' : 'Đăng nhập',
-            'CLOSE' : 'Đóng'
+            'CLOSE' : 'Đóng',
+            'OK' : 'Đồng ý',
+            'SIGN_OUT' : 'Đăng xuất',
+            'PROFILE' : 'Hồ sơ'
         },
         'SCREEN' : {
             'ID' : 'ID',

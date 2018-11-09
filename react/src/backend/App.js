@@ -7,12 +7,14 @@ import { BrowserRouter as Router, Route, Switch, Link, withRouter  } from 'react
 import * as AdminRoutes from './constants/routes';
 import Admin from './pages/Admin';
 
-import RedirectToLogin from './components/redirect/RedirectToLogin';
-
 class App extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        
     }
 
     render() {

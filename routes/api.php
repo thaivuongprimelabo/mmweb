@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], function () {
     Route::post('/auth', 'ApiController@authentication')->name('authentication.post');
+    Route::post('/register', 'ApiController@register')->name('register.post');
     Route::post('/backup', 'ApiController@backup')->name('backup.post');
     Route::get('/settings', 'ApiController@settings')->name('settings.get');
     Route::get('/sync', 'ApiController@sync')->name('sync.get');

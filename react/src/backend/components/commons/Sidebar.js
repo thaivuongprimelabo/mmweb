@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-
+import screen from '../../constants/screen';
 import UserIcon from '../../assets/admin/dist/img/user2-160x160.jpg';
+import SidebarItem from './SidebarItem';
 
 class Sidebar extends Component {
 
@@ -20,6 +21,17 @@ class Sidebar extends Component {
     }
 
     render() {
+
+        var { auth, language } = this.props;
+
+        var screenLocale = screen[language];
+        var userInfo = auth.userInfo;
+        var keys = Object.keys(screenLocale.SIDEBAR);
+        var sidebar = screenLocale.SIDEBAR;
+        var listMenu = keys.map((item, index) => {
+            return <SidebarItem key={index} itemname={ sidebar[item] } />
+        });
+
         return (
             <aside className="main-sidebar">
 
@@ -30,20 +42,10 @@ class Sidebar extends Component {
                     <img src={ UserIcon } className="img-circle" alt="User Image" />
                     </div>
                     <div className="pull-left info">
-                    <p>Mr.A</p>
-                    <a href="#"><i className="fa fa-circle text-success"></i> Online</a>
+                    <p>{ userInfo.name }</p>
+                    <a href="#"><i className="fa fa-circle text-success"></i> { screenLocale.SCREEN.ONLINE }</a>
                     </div>
                 </div>
-
-                <form action="#" method="get" className="sidebar-form">
-                    <div className="input-group">
-                    <input type="text" name="q" className="form-control" placeholder="Search..." />
-                    <span className="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" className="btn btn-flat"><i className="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
 
                 <ul className="sidebar-menu" data-widget="tree">
                     <li className="header">MAIN NAVIGATION</li>
@@ -55,8 +57,7 @@ class Sidebar extends Component {
                         </span>
                     </a>
                     <ul className="treeview-menu">
-                        <li><a href="../../index.html"><i className="fa fa-circle-o"></i> Dashboard v1</a></li>
-                        <li><a href="../../index2.html"><i className="fa fa-circle-o"></i> Dashboard v2</a></li>
+                        { listMenu }
                     </ul>
                     </li>
                 </ul>
@@ -68,6 +69,8 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        auth : state.auth,
+        language : state.language
     };
 }
 

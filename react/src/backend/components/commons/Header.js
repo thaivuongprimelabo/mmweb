@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import screen from '../../constants/screen';
 
 import * as AdminRoutes from '../../constants/routes';
 
@@ -30,16 +31,17 @@ class Header extends Component {
     }
 
     render() {
-        var { auth } = this.props;
+        var { auth, language } = this.props;
 
-        var username = auth.userInfo.name;
+        var userInfo = auth.userInfo;
+        var screenLocale = screen[language];
 
         return (
             <header className="main-header">
 
                 <a href="index2.html" className="logo">
-                    <span className="logo-mini"><b>A</b>LT</span>
-                    <span className="logo-lg"><b>Zenrin</b>Data</span>
+                    <span className="logo-mini">{screen.CMS_NAME}</span>
+                    <span className="logo-lg"><b>{screen.CMS_NAME}</b>&nbsp;{screen.CMS_NAME2}</span>
                 </a>
 
                 <nav className="navbar navbar-static-top" role="navigation">
@@ -126,36 +128,23 @@ class Header extends Component {
                         <li className="dropdown user user-menu">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                                 <img src={ UserIcon } className="user-image" alt="User Image" />
-                                <span className="hidden-xs">{ username }</span>
+                                <span className="hidden-xs">{ userInfo.name }</span>
                             </a>
                             <ul className="dropdown-menu">
                             <li className="user-header">
                                 <img src={ UserIcon } className="img-circle" alt="User Image" />
 
                                 <p>
-                                { username }
-                                <small>Member since Nov. 2012</small>
+                                { userInfo.name }
                                 </p>
                             </li>
-                            <li className="user-body">
-                                <div className="row">
-                                <div className="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div className="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div className="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                                </div>
-                            </li>
+                            
                             <li className="user-footer">
                                 <div className="pull-left">
-                                <a href="#" className="btn btn-default btn-flat">Profile</a>
+                                <a href="#" className="btn btn-default btn-flat">{ screenLocale.BUTTON.PROFILE }</a>
                                 </div>
                                 <div className="pull-right">
-                                    <a href="javascript:void(0)" className="btn btn-default btn-flat" onClick={ this._signout }>Sign out</a>
+                                    <a href="javascript:void(0)" className="btn btn-default btn-flat" onClick={ this._signout }>{ screenLocale.BUTTON.SIGN_OUT }</a>
                                 </div>
                             </li>
                             </ul>
@@ -173,7 +162,8 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth : state.auth
+        auth : state.auth,
+        language : state.language
     };
 }
 

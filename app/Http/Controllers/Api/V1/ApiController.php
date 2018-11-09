@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Constants\Constants;
 use App\Constants\Messages;
 use App\Http\Controllers\Controller;
@@ -36,7 +37,6 @@ class ApiController extends Controller
     public function authentication(Request $request) {
         $output = [
             'code' => 404,
-            'message' => 'MSG_INVALID_USER',
             'data' => []
         ];
         $email = $request->email;
@@ -48,8 +48,44 @@ class ApiController extends Controller
         if (Auth::attempt($userdata)) {
             $request->clear = true;
             $output['code'] = Constants::SUCCESS;
-            $output['message'] = 'MSG_LOGIN_SUCCESS';
             $output['data'] = Auth::user();
+        }
+        
+        return response()->json($output);
+    }
+
+    /**
+     * register
+     * @param Request $request 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request) {
+        $output = [
+            'code' => 404,
+            'data' => []
+        ];
+        
+        DB::beginTransaction();
+        try {
+
+            $user = new Users;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->role_id = $request->role_id;
+
+            $user->save();
+            
+            if($user) {
+                $output['code'] = 200;
+                $output['data'] = $user;
+            }
+
+            DB::commit();
+
+        } catch (\Exception $e) {
+           \Log::error($e);
+           DB::rollback();
         }
         
         return response()->json($output);

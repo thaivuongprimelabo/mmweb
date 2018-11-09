@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import * as Constants from '../constants/commons';
+import * as Types from '../redux/actions/actionTypes';
+import * as AdminRoutes from '../constants/routes';
 
 /** Assets */
 import '../assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css';
@@ -32,7 +35,12 @@ class Main extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        var { auth } = nextProps;
+        if(this.props.auth !== auth) {
+            if(auth.loginStatus === Types.SIGN_OUT) {
+                window.location = Constants.BACKEND + AdminRoutes.ROUTE_LOGIN;
+            }
+        }
     } 
 
     componentDidMount() {
@@ -70,6 +78,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        auth : state.auth
     };
 }
 

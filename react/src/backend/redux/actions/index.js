@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as Api from '../../constants/api';
-import * as Types from '../actions/actionTypes';
+import * as Types from './actionTypes';
 
 export const login = (form) => {
 	return (dispatch) => {
@@ -24,6 +24,43 @@ export const login = (form) => {
 			var responseJson = res.data;
 			if(responseJson.code === 200) {
 				dispatch(loginSucceed(responseJson.data));
+			} else {
+				dispatch(loginFailed())
+			}
+		})
+		.catch((error) =>{
+			alert(error);
+		});
+	}
+}
+
+export const register = (form) => {
+	return (dispatch) => {
+		var data = {
+			name : form.name,
+			email : form.email,
+			password: form.password,
+			role_id : 2
+		};
+
+		var strJson = JSON.stringify(data);
+
+		axios({
+			method: 'POST',
+			url : Api.API_REGISTER,
+			headers: {
+			  Accept: 'application/json',
+			  'Content-Type': 'application/json; charset=utf-8',
+			},
+			data : strJson
+		})
+		.then(res => {
+			var responseJson = res.data;
+			console.log(responseJson);
+			if(responseJson.code === 200) {
+				dispatch(registerSucceed(responseJson.data));
+			} else {
+				dispatch(registerFailed());
 			}
 		})
 		.catch((error) =>{
@@ -94,6 +131,25 @@ export const loginSucceed = (data) => {
 	return {
 		type : Types.LOGIN_SUCCEED,
 		userInfo : data
+	}
+}
+
+export const loginFailed = () => {
+	return {
+		type : Types.LOGIN_FAILED
+	}
+}
+
+export const registerSucceed = (data) => {
+	return {
+		type : Types.REGISTER_SUCCEED,
+		userInfo : data
+	}
+}
+
+export const registerFailed = () => {
+	return {
+		type : Types.REGISTER_FAILED
 	}
 }
 
