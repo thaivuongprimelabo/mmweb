@@ -32,6 +32,11 @@ class Main extends Component {
     }
 
     componentWillMount() {
+        var { auth } = this.props;
+        var keys = Object.keys(auth.userInfo);
+        if(keys.length === 0) {
+            window.location = Constants.BACKEND + AdminRoutes.ROUTE_LOGIN;
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -45,6 +50,54 @@ class Main extends Component {
 
     componentDidMount() {
         document.body.className="hold-transition skin-blue sidebar-mini";
+
+        // Fix height
+        var Selector = {
+            wrapper       : '.wrapper',
+            contentWrapper: '.content-wrapper',
+            layoutBoxed   : '.layout-boxed',
+            mainFooter    : '.main-footer',
+            mainHeader    : '.main-header',
+            sidebar       : '.sidebar',
+            controlSidebar: '.control-sidebar',
+            fixed         : '.fixed',
+            sidebarMenu   : '.sidebar-menu',
+            logo          : '.main-header .logo'
+        };
+
+        var ClassName = {
+            fixed         : 'fixed',
+            holdTransition: 'hold-transition'
+        };
+        
+        var footerHeight  = $(Selector.mainFooter).outerHeight() || 0;
+        var neg           = $(Selector.mainHeader).outerHeight() + footerHeight;
+        var windowHeight  = $(window).height();
+        var sidebarHeight = $(Selector.sidebar).height() || 0;
+
+        // Set the min-height of the content and sidebar based on
+        // the height of the document.
+        if ($('body').hasClass(ClassName.fixed)) {
+        $(Selector.contentWrapper).css('min-height', windowHeight - footerHeight);
+        } else {
+            var postSetHeight;
+
+            if (windowHeight >= sidebarHeight) {
+                $(Selector.contentWrapper).css('min-height', windowHeight - neg);
+                postSetHeight = windowHeight - neg;
+            } else {
+                $(Selector.contentWrapper).css('min-height', sidebarHeight);
+                postSetHeight = sidebarHeight;
+            }
+
+            // Fix for the control sidebar height
+            var $controlSidebar = $(Selector.controlSidebar);
+            if (typeof $controlSidebar !== 'undefined') {
+                if ($controlSidebar.height() > postSetHeight)
+                $(Selector.contentWrapper).css('min-height', $controlSidebar.height());
+            }
+        }
+
     }
 
     render() {
@@ -53,21 +106,8 @@ class Main extends Component {
                 <Header />
                 <Sidebar />
                 <div className="content-wrapper">
-                    <section className="content-header">
-                        <h1>
-                            Blank page
-                            <small>it all starts here</small>
-                        </h1>
-                        <ol className="breadcrumb">
-                            <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-                            <li><a href="#">Examples</a></li>
-                            <li className="active">Blank page</li>
-                        </ol>
-                    </section>
-
-                    <section className="content">
-                        { this.props.children }
-                    </section>
+                    { this.props.children }
+                    
                 </div>
                 
                 <Footer />

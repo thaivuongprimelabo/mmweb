@@ -172,4 +172,21 @@ class ApiController extends Controller
 
         return response()->json($output);
     }
+
+    /**
+     * loadActions
+     */
+    public function loadActions() {
+        $actions = Actions::select('actions.*','locations.name AS location_name','types.name as type_name')
+                ->leftJoin('locations','locations.id', '=', 'actions.location_id')
+                ->leftJoin('types','types.value', '=', 'actions.type_id')
+                ->orderBy('created_at', 'DESC')->limit(10)->get();
+
+        $output = [
+            'code' => Constants::SUCCESS,
+            'data' => $actions,
+        ];
+
+        return response()->json($output);
+    }
 }

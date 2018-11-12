@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PageNumber from './PageNumber';
 import * as Constants from '../constants/commons';
+import screen from '../constants/screen';
 
 class Pagination extends Component {
 
@@ -11,8 +12,9 @@ class Pagination extends Component {
     }
 
     _renderPaging = () => {
-        var { totalPages, currentPage } = this.props.pagingInfo;
+        var { totalRecords, currentPage, rowPerPage } = this.props.pagingInfo;
         var pageNumber = [];
+        var totalPages = Math.floor(totalRecords / rowPerPage);
         
         var prevPage = (currentPage - 1) > 0 ? (currentPage - 1) : -1;
         var nextPage = (currentPage + 1) <= totalPages ? (currentPage + 1) : -1 ;
@@ -64,12 +66,18 @@ class Pagination extends Component {
     }
 
     render() {
-        var { text, pagingInfo } = this.props;
+        var { pagingInfo, language } = this.props;
+        var screenLocale = screen[language];
+        var currentPage = pagingInfo.currentPage;
+        var rowPerPage = pagingInfo.rowPerPage;
+
+        var to = (currentPage + rowPerPage) - 1;
+        var from = (to - rowPerPage) + 1;
 
         var pageNumber = this._renderPaging();
 
-        var total = text.PAGINATION.TOTAL.replace('{0}', pagingInfo.totalRecords);
-        var fromTo = text.PAGINATION.FROM_TO.replace('{0}', pagingInfo.from).replace('{1}', pagingInfo.to);
+        var total = screenLocale.PAGINATION.TOTAL.replace('{0}', pagingInfo.totalRecords);
+        var fromTo = screenLocale.PAGINATION.FROM_TO.replace('{0}', from).replace('{1}', to);
         return (
             <div className="box-header">
                 <p className="box-note"><span>{ fromTo }</span> <span>{ total }</span></p>
@@ -87,7 +95,8 @@ class Pagination extends Component {
 const mapStateToProps = (state) => {
     return {
         text : state.text,
-        types : state.types
+        types : state.types,
+        language: state.language
     };
 }
 

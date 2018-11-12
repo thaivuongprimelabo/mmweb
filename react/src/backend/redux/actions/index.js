@@ -96,7 +96,29 @@ export const loadTypesFromApi = () => {
 		.then(res => {
 			var responseJson = res.data;
 			if(responseJson.code === 200) {
-				dispatch(saveTypesToProps(responseJson.data));
+				dispatch(loadTypesSucceed(responseJson.data));
+			} else {
+				dispatch(loadTypesFailed());
+			}
+		})
+		.catch((error) =>{
+			console.log(error);
+		});
+	}
+}
+
+export const loadActionsFromApi = () => {
+	return (dispatch) => {
+		axios({
+			method: 'GET',
+			url : Api.API_LOAD_ACTIONS
+		})
+		.then(res => {
+			var responseJson = res.data;
+			if(responseJson.code === 200) {
+				dispatch(loadActionsSucceed(responseJson.data));
+			} else {
+				dispatch(loadActionsFailed());
 			}
 		})
 		.catch((error) =>{
@@ -106,10 +128,29 @@ export const loadTypesFromApi = () => {
 }
 
 // Save to props
-export const saveTypesToProps = (data) => {
+export const loadTypesSucceed = (data) => {
     return {
-        type : Types.SAVE_TYPES,
+        type : Types.LOAD_TYPES_SUCCEED,
         data : data
+    }
+}
+
+export const loadTypesFailed = () => {
+    return {
+        type : Types.LOAD_TYPES_FAILED
+    }
+}
+
+export const loadActionsSucceed = (data) => {
+    return {
+        type : Types.LOAD_ACTIONS_SUCCEED,
+        data : data
+    }
+}
+
+export const loadActionsFailed = (data) => {
+    return {
+        type : Types.LOAD_ACTIONS_FAILED
     }
 }
 

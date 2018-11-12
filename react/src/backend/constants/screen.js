@@ -1,14 +1,60 @@
+import * as Commons from './commons';
+import * as AdminRoutes from './routes';
+
 const screen = {
     'CMS_NAME' : 'MM',
     'CMS_NAME2' : 'ONLINE',
     'VN' : {
-        'SIDEBAR' : {
-            'TOP' : 'Trang chủ',
-            'CATE_LIST' : 'Danh mục loại',
-            'LOCATION_LIST' : 'Danh mục địa điểm',
-            'ACTION_LIST' : 'Danh mục hoạt động',
-            'ACCOUNT_LIST' : 'Danh mục tài khoản',
-        },
+        'SIDEBAR' : [
+            {
+                'NAME' : 'Danh mục quản lý',
+                'TYPE' : 0,
+                'ICON' : 'fa fa-dashboard',
+                'URL'  : Commons.BACKEND + '/#',
+                'ACTIVE' : true,
+                'CHILD_NODE' : [
+                    {
+                        'NAME' : 'Thông tin điều khiển',
+                        'TYPE' : 1,
+                        'URL' :  AdminRoutes.ROUTE_DASHBOARD,
+                        'ICON' : 'fa fa-info-circle'
+                    },
+                    {
+                        'NAME' : 'Quản lý loại',
+                        'TYPE' : 1,
+                        'URL' :  AdminRoutes.ROUTE_CATEGORY,
+                        'ICON' : 'fa fa-list-ol'
+                    },
+                    {
+                        'NAME' : 'Quản lý địa điểm',
+                        'TYPE' : 1,
+                        'URL' :  AdminRoutes.ROUTE_LOCATION,
+                        'ICON' : 'fa fa-map-marker'
+                    },
+                    {
+                        'NAME' : 'Quản lý hoạt động',
+                        'TYPE' : 1,
+                        'URL' :  AdminRoutes.ROUTE_ACTION,
+                        'ICON' : 'fa fa-hand-o-right'
+                    },
+                    {
+                        'NAME' : 'Quản lý tài khoản',
+                        'TYPE' : 1,
+                        'URL' :  AdminRoutes.ROUTE_USER,
+                        'ICON' : 'fa fa-user'
+                    }
+                ]
+            },
+            {
+                'NAME' : 'Cài đặt',
+                'TYPE' : 0,
+                'ICON' : 'fa fa-cogs',
+                'ACTIVE' : false,
+                'URL'  : Commons.BACKEND + AdminRoutes.ROUTE_CONFIG,
+                'CHILD_NODE' : []
+            }
+            
+        ],
         'BUTTON' : {
             'REGISTER' : 'Đăng ký',
             'UPDATE' : 'Cập nhật',
@@ -16,7 +62,8 @@ const screen = {
             'CLOSE' : 'Đóng',
             'OK' : 'Đồng ý',
             'SIGN_OUT' : 'Đăng xuất',
-            'PROFILE' : 'Hồ sơ'
+            'PROFILE' : 'Hồ sơ',
+            'SEARCH' : 'Tìm kiếm'
         },
         'SCREEN' : {
             'ID' : 'ID',
@@ -34,7 +81,7 @@ const screen = {
             'CREATE_ACTION' : 'Đăng ký hoạt động',
             'UPLOAD_FILE' : 'Tải file',
             'URL' : 'URL',
-            'IS_SYNC' : 'Đồng bộ',
+            'IS_SYNC' : 'Đã đồng bộ',
             'NOT_SYNC' : 'Chưa đồng bộ',
             'REMEMBER_ME' : 'Duy trì đăng nhập',
             'LOADING' : 'Đang tải dữ liệu',
@@ -48,7 +95,19 @@ const screen = {
             'REG_ACC' : 'Đăng ký tài khoản',
             'LOGIN_TITLE' : 'Đăng nhập tài khoản',
             'FULLNAME' : 'Họ tên',
-            
+            'ACTIONS' : {
+                'LIST_TITLE' : 'Danh mục hoạt động',
+                'COLUMNS' : {
+                    'no' : 'Id',
+                    'name': 'Hoạt động', 
+                    'price': 'Chi phí',
+                    'location': 'Vị trí',
+                    'created_at': 'Ngày tạo',
+                    'comment': 'Bình luận',
+                    'type': 'Loại hoạt động',
+                    'sync': 'Đồng bộ'    
+                }
+            }
         },
         'PAGINATION' : {
             'FROM_TO' : '{0} dòng～{1} dòng',

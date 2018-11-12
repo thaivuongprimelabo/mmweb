@@ -1,1 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic';
+.mb10 {
+    margin-bottom: 10px;
+}
+.pd6 {
+    padding: 6px;
+}

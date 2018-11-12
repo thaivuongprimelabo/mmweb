@@ -28,8 +28,8 @@ class Sidebar extends Component {
         var userInfo = auth.userInfo;
         var keys = Object.keys(screenLocale.SIDEBAR);
         var sidebar = screenLocale.SIDEBAR;
-        var listMenu = keys.map((item, index) => {
-            return <SidebarItem key={index} itemname={ sidebar[item] } />
+        var listMenu = sidebar.map((item, index) => {
+            return <SidebarItem key={index} item={ item } />
         });
 
         return (
@@ -48,18 +48,7 @@ class Sidebar extends Component {
                 </div>
 
                 <ul className="sidebar-menu" data-widget="tree">
-                    <li className="header">MAIN NAVIGATION</li>
-                    <li className="treeview">
-                    <a href="#">
-                        <i className="fa fa-dashboard"></i> <span>Dashboard</span>
-                        <span className="pull-right-container">
-                        <i className="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul className="treeview-menu">
-                        { listMenu }
-                    </ul>
-                    </li>
+                    { listMenu }
                 </ul>
                 </section>
             </aside>
