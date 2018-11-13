@@ -1,7 +1,7 @@
 import * as Commons from './commons';
 import * as AdminRoutes from './routes';
 
-const screen = {
+var screen = {
     'CMS_NAME' : 'MM',
     'CMS_NAME2' : 'ONLINE',
     'VN' : {
@@ -125,6 +125,8 @@ const screen = {
                     'type': 'Loại hoạt động',
                     'sync': 'Đồng bộ',    
                 }
+            },
+            'BREADCRUMB' : {
             }
         },
         'PAGINATION' : {
@@ -133,5 +135,10 @@ const screen = {
         }
     }
 }
+screen.VN.SCREEN.BREADCRUMB[AdminRoutes.ROUTE_DASHBOARD] = 'Thông tin điều khiển';
+screen.VN.SCREEN.BREADCRUMB[AdminRoutes.ROUTE_ACTION] = 'Danh mục hoạt động';
+screen.VN.SCREEN.BREADCRUMB[AdminRoutes.ROUTE_ACTION_ADD] = 'Đăng ký hoạt động';
+
+console.log(screen.VN.SIDEBAR.BREADCRUMB);
 
 export default screen;

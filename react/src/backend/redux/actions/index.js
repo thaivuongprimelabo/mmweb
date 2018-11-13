@@ -4,6 +4,9 @@ import * as Types from './actionTypes';
 
 export const login = (form) => {
 	return (dispatch) => {
+
+		dispatch(loginInprogress());
+
 		var data = {
 			email : form.email,
 			password : form.password
@@ -213,6 +216,12 @@ export const loginSucceed = (data) => {
 	return {
 		type : Types.LOGIN_SUCCEED,
 		userInfo : data
+	}
+}
+
+export const loginInprogress = () => {
+	return {
+		type : Types.LOGIN_INPROGRESS
 	}
 }
 

@@ -22,6 +22,11 @@ var myReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        case Types.LOGIN_INPROGRESS:
+            state.loginStatus = action.type;
+            return {
+                ...state
+            }
         case Types.REGISTER_SUCCEED:
             state.userInfo = action.userInfo;
             state.loginStatus = action.type;

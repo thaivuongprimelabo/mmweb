@@ -19,6 +19,13 @@ class ModalAlert extends React.Component {
         var { auth, language } = nextProps;
         if(this.props.auth !== auth) {
 
+            if(auth.loginStatus === Types.LOGIN_INPROGRESS) {
+                this.setState({
+                    content : messages[language].MSG_LOGIN_INPROGRESS
+                });
+                $('#alertModal').modal();
+            }
+
             if(auth.loginStatus === Types.LOGIN_FAILED) {
                 this.setState({
                     content : messages[language].MSG_LOGIN_FAILED

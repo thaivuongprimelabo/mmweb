@@ -16,6 +16,7 @@ import { loadActionsFromApi, loadTypesFromApi, loadLocationsFromApi, search } fr
 import Main from '../../layouts/Main';
 import Pagination from '../../components/commons/Pagination';
 import NoDataTable from '../../components/commons/NoDataTable';
+import Breadcrumb from '../../components/commons/Breadcrumb';
 import * as AdminRoutes from '../../constants/routes';
 
 class ActionList extends Component {
@@ -135,15 +136,11 @@ class ActionList extends Component {
 
         return (
             <Main>
-                <section class="content-header">
+                <section className="content-header">
                     <h1>
                         { title }
                     </h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Forms</a></li>
-                        <li class="active">General Elements</li>
-                    </ol>
+                    <Breadcrumb />
                 </section>
                 <section className="content container-fluid">
                     <div className="box mb10">
