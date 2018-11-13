@@ -5,3 +5,7 @@
 .pd6 {
     padding: 6px;
 }
+
+#sidebar-menu li a.active {
+    color:#ffffff;
+}

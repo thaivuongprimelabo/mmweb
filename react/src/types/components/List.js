@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Pagination from '../../commons/Pagination';
+import Pagination from '../../components/commons/Pagination';
 import ListItem from './ListItem';
 import * as Constants from '../../constants/commons';
 

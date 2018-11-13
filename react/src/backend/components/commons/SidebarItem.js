@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default class SidebarItem extends React.Component {
   render() {
@@ -10,7 +10,7 @@ export default class SidebarItem extends React.Component {
     if(childNode.length > 0) {
       iconRight = <i className="fa fa-angle-left pull-right"></i>;
       renderChildNode = childNode.map((item, index) => {
-        return <li key={index}><Link to={item.URL} ><i className={item.ICON}></i> { item.NAME }</Link></li>
+        return <li key={index}><NavLink to={item.URL} activeClassName="active" ><i className={item.ICON}></i> { item.NAME }</NavLink></li>
       });
     }
 

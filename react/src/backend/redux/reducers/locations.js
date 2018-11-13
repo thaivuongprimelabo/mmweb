@@ -8,11 +8,11 @@ var initialState = {
 
 var myReducer = (state = initialState, action) => {
 	switch(action.type) {
-        case Types.LOAD_TYPES_SUCCEED:
+        case Types.LOAD_LOCATIONS_SUCCEED:
             state.data = action.data;
             state.loadStatus = action.type;
             return { ...state };
-        case Types.LOAD_TYPES_SUCCEED:
+        case Types.LOAD_LOCATIONS_FAILED:
             state.loadStatus = action.type;
             return { ...state };
 		default:

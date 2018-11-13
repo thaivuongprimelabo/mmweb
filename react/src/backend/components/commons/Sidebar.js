@@ -47,7 +47,7 @@ class Sidebar extends Component {
                     </div>
                 </div>
 
-                <ul className="sidebar-menu" data-widget="tree">
+                <ul id="sidebar-menu" className="sidebar-menu" data-widget="tree">
                     { listMenu }
                 </ul>
                 </section>

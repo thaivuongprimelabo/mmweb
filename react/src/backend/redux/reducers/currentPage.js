@@ -1,7 +1,7 @@
 import * as Types from '../actions/actionTypes';
 import * as Constants from '../../constants/commons';
 
-var initialState = 0;
+var initialState = 1;
 
 var myReducer = (state = initialState, action) => {
 	switch(action.type) {

@@ -28,4 +28,5 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
     Route::get('/load-text', 'ApiController@loadText')->name('loadText.get');
     Route::get('/load-types', 'ApiController@loadTypes')->name('loadTypes.get');
     Route::get('/load-actions', 'ApiController@loadActions')->name('loadActions.get');
+    Route::get('/load-locations', 'ApiController@loadLocations')->name('loadLocations.get');
 });

@@ -107,6 +107,26 @@ export const loadTypesFromApi = () => {
 	}
 }
 
+export const loadLocationsFromApi = () => {
+	return (dispatch) => {
+		axios({
+			method: 'GET',
+			url : Api.API_LOAD_LOCATIONS
+		})
+		.then(res => {
+			var responseJson = res.data;
+			if(responseJson.code === 200) {
+				dispatch(loadLocationsSucceed(responseJson.data));
+			} else {
+				dispatch(loadLocationsFailed());
+			}
+		})
+		.catch((error) =>{
+			console.log(error);
+		});
+	}
+}
+
 export const loadActionsFromApi = () => {
 	return (dispatch) => {
 		axios({
@@ -125,6 +145,10 @@ export const loadActionsFromApi = () => {
 			console.log(error);
 		});
 	}
+}
+
+export const search = (conditions) => {
+	return conditions;
 }
 
 // Save to props
@@ -152,6 +176,23 @@ export const loadActionsFailed = (data) => {
     return {
         type : Types.LOAD_ACTIONS_FAILED
     }
+}
+
+export const loadLocationsSucceed = (data) => {
+    return {
+        type : Types.LOAD_LOCATIONS_SUCCEED,
+        data : data
+    }
+}
+
+export const loadLocationsFailed = () => {
+    return {
+        type : Types.LOAD_LOCATIONS_FAILED
+    }
+}
+
+export const paging = (params) => {
+	return params
 }
 
 export const saveTextToProps = (data) => {

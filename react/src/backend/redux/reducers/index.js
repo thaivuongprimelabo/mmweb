@@ -5,6 +5,7 @@ import currentPage from './currentPage';
 import language from './language';
 import auth from './auth';
 import actions from './actions';
+import locations from './locations';
 
 const reducer = combineReducers({
     text : text,
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     currentPage : currentPage,
     language : language,
     auth : auth,
-    actions : actions
+    actions : actions,
+    locations : locations
 });
 
 export default reducer;

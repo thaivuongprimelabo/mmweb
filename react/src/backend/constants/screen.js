@@ -22,7 +22,7 @@ const screen = {
                     {
                         'NAME' : 'Quản lý loại',
                         'TYPE' : 1,
-                        'URL' :  AdminRoutes.ROUTE_CATEGORY,
+                        'URL' :  AdminRoutes.ROUTE_TYPE,
                         'ICON' : 'fa fa-list-ol'
                     },
                     {
@@ -63,7 +63,11 @@ const screen = {
             'OK' : 'Đồng ý',
             'SIGN_OUT' : 'Đăng xuất',
             'PROFILE' : 'Hồ sơ',
-            'SEARCH' : 'Tìm kiếm'
+            'SEARCH' : 'Tìm kiếm',
+            'CSV' : 'Xuất CSV',
+            'BACKUP' : 'Sao lưu dữ liệu',
+            'SAVE' : 'Lưu',
+            'BACK' : 'Quay lại'
         },
         'SCREEN' : {
             'ID' : 'ID',
@@ -95,8 +99,22 @@ const screen = {
             'REG_ACC' : 'Đăng ký tài khoản',
             'LOGIN_TITLE' : 'Đăng nhập tài khoản',
             'FULLNAME' : 'Họ tên',
+            'NO_DATA_FOUND' : 'Không có dữ liệu để hiển thị',
+            'COST' : 'Chi phí',
+            'CREATED_AT' : 'Ngày tạo',
+            'LOCATION' : 'Địa điểm',
+            'COMMENT' : 'Bình luận',
+            'TYPE' : 'Loại hoạt động',
             'ACTIONS' : {
                 'LIST_TITLE' : 'Danh mục hoạt động',
+                'ADD_TITLE' : 'Đăng ký hoạt động',
+                'SEARCH' : {
+                    'NAME' : 'Lọc theo tên',
+                    'TYPE' : 'Lọc theo loại',
+                    'LOCATION' : 'Lọc theo địa điểm',
+                    'DATE_FROM' : 'Từ ngày',
+                    'DATE_TO' : 'Đến ngày'
+                },
                 'COLUMNS' : {
                     'no' : 'Id',
                     'name': 'Hoạt động', 
@@ -105,7 +123,7 @@ const screen = {
                     'created_at': 'Ngày tạo',
                     'comment': 'Bình luận',
                     'type': 'Loại hoạt động',
-                    'sync': 'Đồng bộ'    
+                    'sync': 'Đồng bộ',    
                 }
             }
         },

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const webpack = require('webpack');
 
 module.exports = {
@@ -57,6 +58,42 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"development"'
-        })
+        }),
+        new HtmlWebpackExternalsPlugin({
+            externals: [
+                {
+                    module: 'jquery',
+                    entry: {
+                        path: 'dist/jquery.min.js',
+                        type: 'js'
+                    },
+                    global: 'jQuery',
+                },
+                {
+                    module: 'moment',
+                    entry: {
+                        path: 'moment.js',
+                        type: 'js'
+                    },
+                    global: 'Moment.js',
+                },
+                {
+                  module: 'datetimepicker',
+                  entry: {
+                      path: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js',
+                      type: 'js'
+                  }
+                },
+                {
+                    module: 'bootstrap-datetimepicker.min.css',
+                    entry: {
+                        path: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css',
+                        type: 'css'
+                    }
+                },
+                
+                
+            ]
+        }),
     ]
 }

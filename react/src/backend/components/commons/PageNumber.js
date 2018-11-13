@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as Actions from '../redux/actions/index';
+import { paging } from '../../redux/actions/index';
 
 class PageNumber extends Component {
 
     _goToPage = (page) => {
         if(page > 0) {
-            this.props.saveCurrentPage(page);
+            this.props.doPaging(page);
         }
     }
 
@@ -51,9 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        saveCurrentPage : (currentPage) => {
-            dispatch(Actions.saveCurrentPage(currentPage));
-        }
+        
     }
 };
 
