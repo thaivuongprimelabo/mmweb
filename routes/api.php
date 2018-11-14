@@ -23,6 +23,7 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
     Route::post('/backup', 'ApiController@backup')->name('backup.post');
     Route::get('/settings', 'ApiController@settings')->name('settings.get');
     Route::get('/sync', 'ApiController@sync')->name('sync.get');
+    Route::post('/add-action', 'ApiController@addAction')->name('addAction.post');
     Route::post('/add-location', 'ApiController@addLocation')->name('addlocation.post');
     Route::post('/add-type', 'ApiController@addType')->name('addType.post');
     Route::get('/load-text', 'ApiController@loadText')->name('loadText.get');

@@ -99,7 +99,6 @@ var screen = {
             'REG_ACC' : 'Đăng ký tài khoản',
             'LOGIN_TITLE' : 'Đăng nhập tài khoản',
             'FULLNAME' : 'Họ tên',
-            'NO_DATA_FOUND' : 'Không có dữ liệu để hiển thị',
             'COST' : 'Chi phí',
             'CREATED_AT' : 'Ngày tạo',
             'LOCATION' : 'Địa điểm',
@@ -138,7 +137,5 @@ var screen = {
 screen.VN.SCREEN.BREADCRUMB[AdminRoutes.ROUTE_DASHBOARD] = 'Thông tin điều khiển';
 screen.VN.SCREEN.BREADCRUMB[AdminRoutes.ROUTE_ACTION] = 'Danh mục hoạt động';
 screen.VN.SCREEN.BREADCRUMB[AdminRoutes.ROUTE_ACTION_ADD] = 'Đăng ký hoạt động';
-
-console.log(screen.VN.SIDEBAR.BREADCRUMB);
 
 export default screen;

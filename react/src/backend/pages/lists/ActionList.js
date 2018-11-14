@@ -30,7 +30,8 @@ class ActionList extends Component {
             location_search : '',
             date_from_search : '',
             date_to_search : '',
-            type : ''
+            type : '',
+            text : ''
         }
     }
 

@@ -37,9 +37,9 @@ class Breadcrumb extends Component {
                 if(arrUri[i].length) {
                     to += '/' + arrUri[i];
                     var name = breadcrumb[to];
-                    var li = <li><Link to={to}>{name}</Link></li>;
+                    var li = <li key={i}><Link to={to}>{name}</Link></li>;
                     if(i === (arrUri.length - 1)) {
-                        li = <li>{name}</li>
+                        li = <li key={i}>{name}</li>
                     }
                     segment.push(li);
                 }

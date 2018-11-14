@@ -132,6 +132,9 @@ export const loadLocationsFromApi = () => {
 
 export const loadActionsFromApi = () => {
 	return (dispatch) => {
+
+		dispatch(loadActionsInprogress())
+
 		axios({
 			method: 'GET',
 			url : Api.API_LOAD_ACTIONS
@@ -172,6 +175,12 @@ export const loadActionsSucceed = (data) => {
     return {
         type : Types.LOAD_ACTIONS_SUCCEED,
         data : data
+    }
+}
+
+export const loadActionsInprogress = () => {
+    return {
+        type : Types.LOAD_ACTIONS_INPROGRESS
     }
 }
 

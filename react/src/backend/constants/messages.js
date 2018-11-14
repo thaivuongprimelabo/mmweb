@@ -8,7 +8,9 @@ const messages = {
         'MSG_PASSWORD_CHECK' : 'Mật khẩu không hợp lệ',
         'MSG_LOGIN_FAILED' : 'Tài khoản hoặc mật khẩu không chính xác',
         'MSG_COMMON_ERROR' : 'Có lỗi xảy ra trong quá trình xử lý',
-        'MSG_LOGIN_INPROGRESS' : 'Đang đăng nhập, vui lòng chờ'
+        'MSG_LOGIN_INPROGRESS' : 'Đang đăng nhập, vui lòng chờ',
+        'MSG_NO_DATA_FOUND' : 'Không có dữ liệu để hiển thị',
+        'MSG_LOADING' : 'Đang tải dữ liệu'
     }
 }
 

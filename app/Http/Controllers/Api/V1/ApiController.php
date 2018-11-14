@@ -90,6 +90,32 @@ class ApiController extends Controller
         
         return response()->json($output);
     }
+
+    /**
+     * addAction
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addAction(Request $request) {
+
+        $output = [
+            'code' => Constants::EMPTY_CODE,
+            'data' => ''
+        ];
+
+        $data = $request->all();
+
+        $actionList = json_encode($data['form_data']);
+
+        if(count($actionList)) {
+            $arrAction = [];
+            for($i = 0; $i < count($actionList); $i++) {
+                $action = $actionList[$i];
+            }
+        }
+
+        return response()->json($output);
+    }
     
     /**
      * addType

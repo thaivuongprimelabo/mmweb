@@ -5,59 +5,87 @@ import * as AdminRoutes from '../../constants/routes';
 import screen from '../../constants/screen';
 import Main from '../../layouts/Main';
 import Breadcrumb from '../../components/commons/Breadcrumb';
+import ActionFormItem from '../../components/ActionFormItem';
 
 class ActionForm extends Component {
-  render() {
-    var { language } = this.props;
-    var screenLocale = screen[language];
-    return (
-      <Main>
-        <section class="content-header">
-            <h1>
-                { screenLocale.SCREEN.ACTIONS.ADD_TITLE }
-            </h1>
-            <Breadcrumb />
-        </section>
-        <section className="content">
-            <div className="box box-primary">
-                <form role="form">
-                    <div className="box-body">
-                        <div className="form-group col-md-4">
-                            <label htmlFor="exampleInputEmail1">{ screenLocale.SCREEN.NAME }</label>
-                            <input type="text" className="form-control" id="exampleInputEmail1" />
-                        </div>
-                        <div className="form-group col-md-4">
-                            <label htmlFor="exampleInputPassword1">{ screenLocale.SCREEN.COST }</label>
-                            <input type="text" className="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <div className="form-group col-md-4">
-                            <label htmlFor="exampleInputPassword1">{ screenLocale.SCREEN.CREATED_AT }</label>
-                            <input type="text" className="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <div className="form-group col-md-4">
-                            <label htmlFor="exampleInputPassword1">{ screenLocale.SCREEN.LOCATION }</label>
-                            <input type="text" className="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <div className="form-group col-md-4">
-                            <label htmlFor="exampleInputPassword1">{ screenLocale.SCREEN.COMMENT }</label>
-                            <input type="text" className="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <div className="form-group col-md-4">
-                            <label htmlFor="exampleInputPassword1">{ screenLocale.SCREEN.TYPE }</label>
-                            <input type="text" className="form-control" id="exampleInputPassword1" />
-                        </div>
-                    </div>
 
-                    <div className="box-footer">
-                        <button type="submit" className="btn btn-primary mr10">{ screenLocale.BUTTON.SAVE }</button>
-                        <Link to={ AdminRoutes.ROUTE_ACTION }  className="btn btn-warning pull-right">{ screenLocale.BUTTON.BACK }</Link>
+    constructor(props) {
+        super(props);
+        this.state = {
+            count : 2,
+            form_data : []
+        }
+    }
+
+    _addForm = () => {
+        this.setState({
+            count : this.state.count + 1
+        });
+    }
+
+    _back = () => {
+        this.props.history.push(AdminRoutes.ROUTE_ACTION);
+    }
+
+    _save = () => {
+        console.log(this.state.form_data);
+    }
+
+    _setFormData = (form) => {
+        var { auth } = this.props;
+        var form_data = this.state.form_data;
+        var exists = false;
+        if(form_data.length) {
+            for(var i = 0; i < form_data.length; i++) {
+                if(form_data[i].id === form.id) {
+                    exists = true;
+                }
+            }
+        }
+        form['user_id'] = auth.userInfo.id;
+        if(!exists) {
+            form_data.push(form);
+        } else {
+            form_data[form.id] = form;
+        }
+        
+        this.setState({
+            form_data : form_data
+        })
+        
+    }
+
+    render() {
+        var { language } = this.props;
+        var { count } = this.state;
+        var screenLocale = screen[language];
+        var actionFormItemList = [];
+        for(var i = 0; i < count; i++) {
+            var actionFormItem = <ActionFormItem key={i} id={i} setFormData={this._setFormData} />;
+            actionFormItemList.push(actionFormItem);
+        }
+        
+        return (
+            <Main>
+                <section className="content-header">
+                    <h1>
+                        { screenLocale.SCREEN.ACTIONS.ADD_TITLE }
+                    </h1>
+                    <Breadcrumb />
+                </section>
+                <section className="content">
+                    <div className="row">
+                        { actionFormItemList }
+                        <div className="col-md-12">
+                            <button type="submit" className="btn btn-danger mr10" onClick={this._addForm}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                            <button type="submit" className="btn btn-primary mr10" onClick={this._save}><i className="fa fa-floppy-o" aria-hidden="true"></i> { screenLocale.BUTTON.SAVE }</button>
+                            <Link to={ AdminRoutes.ROUTE_ACTION }  className="btn btn-warning" onClick={this._back}><i className="fa fa-undo" aria-hidden="true"></i> { screenLocale.BUTTON.BACK }</Link>
+                        </div>
                     </div>
-                </form>
-            </div>
-        </section>
-      </Main>
-    )
-  }
+                </section>
+            </Main>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -65,7 +93,8 @@ const mapStateToProps = (state) => {
         language : state.language,
         actions : state.actions,
         types : state.types,
-        locations : state.locations
+        locations : state.locations,
+        auth : state.auth
     };
 }
 

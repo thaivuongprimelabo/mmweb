@@ -7,3 +7,4 @@ export const API_LOAD_LOCATIONS = Constants.HOST + API_VERSION + '/load-location
 export const API_LOGIN = Constants.HOST + API_VERSION + '/auth';
 export const API_REGISTER = Constants.HOST + API_VERSION + '/register';
 export const API_LOAD_ACTIONS = Constants.HOST + API_VERSION + '/load-actions';
+export const API_CREATE_ACTIONS = Constants.HOST + API_VERSION + '/load-actions';
